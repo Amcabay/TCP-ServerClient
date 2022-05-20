@@ -1,0 +1,8 @@
+How to run this program:
+1. Open Server & Client solution
+2. Jalankan Server program
+3. Jalankan Client program
+4. Jika ingin menjalankan 2 Client, buka Client solution yang baru 
+5. Jalan kedua Client program
+6. Masukkan kata di cmd Client 
+7. Teks akan muncul di cmd Server
