@@ -2,7 +2,6 @@
 #include <string.h>
 #include <string>
 #include <thread>
-
 #include <WS2tcpip.h>
 #pragma comment(lib, "ws2_32.lib")
 
@@ -26,7 +25,7 @@ void receiveSocket(SOCKET sock)
 void main()
 {
 	string ipAddress = "127.0.0.1";				//Ipadress of the server
-	int port = 12000;							//Listening port on the server
+	int port = 54000;							//Listening port on the server
 
 	//INISIALISASI WINSOCK
 	WSAData data;
@@ -78,33 +77,17 @@ void main()
 	do
 	{
 		//PROMPT THE USER FOR TEXT
-		//cout << "- ";
 		getline(cin, userInput);
 
 		if (userInput.size() > 0)	//Mengecek apakah user mengetik sesuatu
 		{
 			//SEND THE TEXT
-			//int sendResult = send(sock, userInput.c_str(), userInput.size() + 1, 0);		//userinput.size() + 1 -> dikarenakan string di c++ akan bertambah 1 karena 0 dihitung
-			
-			/*if (sendResult != SOCKET_ERROR)
-			{
-				//WAIT FOR RESPOND
-				ZeroMemory(buf, 4096);
-				int bytesReceived = recv(sock, buf, 4096, 0);
-
-				if (bytesReceived > 0)
-				{
-					//ECHO RESPONSE TO CONSOLE
-					cout << "SERVER> " << string(buf, 0, bytesReceived) << endl; 
-				}
-			}*/
-
 			send(sock, userInput.c_str(), userInput.size() + 1, 0);
 			cout << endl;
 		}
 	} while (userInput.size() > 0);
-	
-	//GRACEFULLY CLOSE DOWN EVERYTHING
+
+	//CLOSE EVERYTHING
 	closesocket(sock);
 	WSACleanup();
 
