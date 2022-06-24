@@ -19,6 +19,13 @@ void receiveSocket(SOCKET sock)
 		{
 			cout << "Server> " << string(buf, 0, bytesReceived) << endl;
 		}
+
+		else
+		{
+			cout << endl;
+			cout << "Server Disconnected" << endl;
+			break;
+		}
 	}
 }
 
@@ -71,16 +78,16 @@ void main()
 	//THREAD TO RECEIVE DATA
 	thread receiveThread (receiveSocket, sock);
 
-	//DO WHILE LOOP TO SEND AND RECEIVE DATA
 	string userInput;
 
 	do
 	{
 		//PROMPT THE USER FOR TEXT
 		getline(cin, userInput);
-
+		
 		if (userInput.size() > 0)	//Mengecek apakah user mengetik sesuatu
 		{
+			
 			//SEND THE TEXT
 			send(sock, userInput.c_str(), userInput.size() + 1, 0);
 			cout << endl;
@@ -93,4 +100,5 @@ void main()
 
 	system("pause");
 	return;
+
 }
